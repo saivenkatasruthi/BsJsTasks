@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <form id="contactForm" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name"></td>
+                    <td><span id="nameError" class="error"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="text" id="email" name="email"></td>
+                    <td><span id="emailError" class="error"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="website">Website:</label></td>
+                    <td><input type="text" id="website" name="website"></td>
+                    <td><span id="websiteError" class="error"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Message:</label></td>
+                    <td><textarea id="message" name="message"></textarea></td>
+                    <td><span id="messageError" class="error"></span></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit"></td>  
+                </tr>
+            </table>
+        </form>
+        </center>
+        <script>
+            function validateForm() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const website = document.getElementById('website').value;
+                const message = document.getElementById('message').value;
+
+                // Reset errors
+                document.getElementById('nameError').innerText = '';
+                document.getElementById('emailError').innerText = '';
+                document.getElementById('websiteError').innerText = '';
+                document.getElementById('messageError').innerText = '';
+
+                let isValid = true;
+
+                if (name === '') {
+                    document.getElementById('nameError').innerText = 'This field is required';
+                    isValid = false;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.match(emailRegex)) {
+                    document.getElementById('emailError').innerText = 'A valid email address is required';
+                    isValid = false;
+                }
+
+                const websiteRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+                if (!websit.match(websiteRegex)) {
+                    document.getElementById('websiteError').innerText = 'A valid URL is required';
+                    isValid = false;
+                }
+
+                if (message === '') {
+                    document.getElementById('messageError').innerText = 'This field is required';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+        </script>
+</body>
+
+</html>
